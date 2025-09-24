@@ -1,0 +1,23 @@
+<div class="relative" (click)="$event.stopPropagation()">
+  <button
+    (click)="toggle()"
+    class="flex items-center px-4 py-2 bg-white dark:bg-gray-700 border rounded-lg hover:bg-gray-50">
+    <span class="mr-2">{{ current === 'de' ? '🇩🇪' : '🇺🇸' }}</span>
+    {{ current === 'de' ? languageService.t('@@language.switch.german') : languageService.t('@@language.switch.english') }}
+  </button>
+
+  @if (isOpen) {
+    <div class="absolute right-0 mt-2 w-40 bg-white border rounded-lg shadow-lg z-50">
+      <button
+        (click)="select('de')"
+        class="w-full px-4 py-2 text-left hover:bg-gray-100 flex items-center">
+        🇩🇪 {{ languageService.t('@@language.switch.german') }}
+      </button>
+      <button
+        (click)="select('en')"
+        class="w-full px-4 py-2 text-left hover:bg-gray-100 flex items-center">
+        🇺🇸 {{ languageService.t('@@language.switch.english') }}
+      </button>
+    </div>
+  }
+</div>

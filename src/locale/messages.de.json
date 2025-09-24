@@ -1,0 +1,9 @@
+{
+  "@@app.title": "Mini Inventar",
+  "@@navigation.menu": "Hauptmenü öffnen",
+  "@@inventory.list.title": "Inventarliste funktioniert!",
+  "@@inventory.list.description": "Hier wird die Inventarliste angezeigt.",
+  "@@language.switch.german": "Deutsch",
+  "@@language.switch.english": "Englisch"
+
+}

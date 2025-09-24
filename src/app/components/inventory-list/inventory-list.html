@@ -1,0 +1,12 @@
+<section class="inventory-list p-4">
+  <header class="mb-4">
+    <h2>{{ t('@@inventory.list.title') }}</h2>
+    <p class="text-gray-600">{{ t('@@inventory.list.description') }}</p>
+  </header>
+
+  <ul class="space-y-2">
+    <li *ngFor="let item of items">
+      {{ item.name }} – {{ item.quantity }}
+    </li>
+  </ul>
+</section>

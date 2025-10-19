@@ -1,8 +1,145 @@
 {
   "@@app.title": "Mini Inventory",
   "@@navigation.menu": "Open main menu",
-  "@@inventory.list.title": "Inventory list works!",
-  "@@inventory.list.description": "The inventory list will be displayed here.",
+  "@@inventory.list.title": "Inventory list is working!",
+  "@@inventory.list.description": "The inventory list is displayed here.",
   "@@language.switch.german": "German",
-  "@@language.switch.english": "English"
+  "@@language.switch.english": "English",
+
+  "app": {
+    "title": "Mini Inventory"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "inventory": "Inventory",
+    "reports": "Reports",
+    "profile": "Profile",
+    "logout": "Logout"
+  },
+  "demo": {
+    "mode": "Demo Mode",
+    "description": "This is a simulated inventory management system. All data is generated for demonstration purposes only."
+  },
+  "navigation": {
+    "menu": "Toggle navigation"
+  },
+  "language": {
+    "switch": {
+      "german": "German",
+      "english": "English"
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome back",
+    "export": "Export",
+    "refresh": "Refresh",
+    "refreshing": "Refreshing...",
+    "noItems": "No items found matching your criteria.",
+    "stats": {
+      "totalItems": "Total Items",
+      "totalQuantity": "Total Quantity",
+      "lowStock": "Low Stock",
+      "outOfStock": "Out of Stock",
+      "totalValue": "Total Value",
+      "locations": "Locations",
+      "recentActivity": "Recent Activity"
+    },
+    "search": {
+      "label": "Search Items",
+      "placeholder": "Search by name, SKU, or location..."
+    },
+    "filter": {
+      "category": "Category",
+      "location": "Location",
+      "status": "Status",
+      "allCategories": "All Categories",
+      "allLocations": "All Locations",
+      "allStatuses": "All Statuses",
+      "clear": "Clear"
+    },
+    "inventory": {
+      "title": "Inventory Items",
+      "itemsCount": "items"
+    },
+    "table": {
+      "id": "ID",
+      "name": "Name",
+      "sku": "SKU",
+      "category": "Category",
+      "quantity": "Quantity",
+      "location": "Location",
+      "price": "Price",
+      "status": "Status",
+      "lastUpdated": "Last Updated",
+      "actions": "Actions"
+    },
+    "status": {
+      "instock": "In Stock",
+      "lowstock": "Low Stock",
+      "outofstock": "Out of Stock",
+      "unknown": "Unknown"
+    },
+    "actions": {
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "addItem": {
+      "button": "Add Item",
+      "title": "Add New Item",
+      "name": "Item Name",
+      "sku": "SKU",
+      "category": "Category",
+      "location": "Location",
+      "quantity": "Quantity",
+      "minStock": "Min Stock",
+      "price": "Price",
+      "namePlaceholder": "Enter item name",
+      "skuPlaceholder": "Enter SKU",
+      "locationPlaceholder": "Enter location",
+      "selectCategory": "Select Category",
+      "add": "Add Item",
+      "cancel": "Cancel",
+      "close": "Close",
+      "success": "Item added successfully!",
+      "missingFields": "Please provide at least a name and SKU for the new item.",
+      "duplicateSku": "SKU already exists. Please use a unique SKU."
+    },
+    "removeItem": {
+      "confirm": "Remove this item from demo inventory? This action cannot be undone in demo.",
+      "success": "Item removed successfully!"
+    },
+    "editItem": {
+      "placeholder": "Edit is a demo placeholder."
+    },
+    "logout": {
+      "confirm": "Are you sure you want to logout?",
+      "success": "Logged out successfully!"
+    },
+    "nav": {
+      "reports": "Reports page would open here",
+      "settings": "Settings page would open here"
+    }
+  },
+  "notifications": {
+    "success": "Success",
+    "error": "Error",
+    "warning": "Warning",
+    "info": "Information",
+    "close": "Close"
+  },
+  "common": {
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "search": "Search",
+    "filter": "Filter",
+    "clear": "Clear",
+    "loading": "Loading...",
+    "yes": "Yes",
+    "no": "No",
+    "ok": "OK"
+  }
 }

@@ -4,6 +4,143 @@
   "@@inventory.list.title": "Inventarliste funktioniert!",
   "@@inventory.list.description": "Hier wird die Inventarliste angezeigt.",
   "@@language.switch.german": "Deutsch",
-  "@@language.switch.english": "Englisch"
+  "@@language.switch.english": "Englisch",
 
+  "app": {
+    "title": "Mini Inventar"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "inventory": "Inventar",
+    "reports": "Berichte",
+    "profile": "Profil",
+    "logout": "Abmelden"
+  },
+  "demo": {
+    "mode": "Demo-Modus",
+    "description": "Dies ist ein simuliertes Inventarverwaltungssystem. Alle Daten sind nur zu Demonstrationszwecken generiert."
+  },
+  "navigation": {
+    "menu": "Navigation umschalten"
+  },
+  "language": {
+    "switch": {
+      "german": "Deutsch",
+      "english": "Englisch"
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Willkommen zurück",
+    "export": "Exportieren",
+    "refresh": "Aktualisieren",
+    "refreshing": "Wird aktualisiert...",
+    "noItems": "Keine Artikel gefunden, die Ihren Kriterien entsprechen.",
+    "stats": {
+      "totalItems": "Artikel Gesamt",
+      "totalQuantity": "Menge Gesamt",
+      "lowStock": "Niedriger Bestand",
+      "outOfStock": "Nicht Vorrätig",
+      "totalValue": "Gesamtwert",
+      "locations": "Standorte",
+      "recentActivity": "Kürzliche Aktivität"
+    },
+    "search": {
+      "label": "Artikel Suchen",
+      "placeholder": "Suche nach Name, SKU oder Standort..."
+    },
+    "filter": {
+      "category": "Kategorie",
+      "location": "Standort",
+      "status": "Status",
+      "allCategories": "Alle Kategorien",
+      "allLocations": "Alle Standorte",
+      "allStatuses": "Alle Status",
+      "clear": "Leeren"
+    },
+    "inventory": {
+      "title": "Inventar Artikel",
+      "itemsCount": "Artikel"
+    },
+    "table": {
+      "id": "ID",
+      "name": "Name",
+      "sku": "SKU",
+      "category": "Kategorie",
+      "quantity": "Menge",
+      "location": "Standort",
+      "price": "Preis",
+      "status": "Status",
+      "lastUpdated": "Zuletzt Aktualisiert",
+      "actions": "Aktionen"
+    },
+    "status": {
+      "instock": "Vorrätig",
+      "lowstock": "Niedriger Bestand",
+      "outofstock": "Nicht Vorrätig",
+      "unknown": "Unbekannt"
+    },
+    "actions": {
+      "edit": "Bearbeiten",
+      "delete": "Löschen"
+    },
+    "addItem": {
+      "button": "Artikel Hinzufügen",
+
+      "title": "Neuen Artikel Hinzufügen",
+      "name": "Artikelname",
+      "sku": "SKU",
+      "category": "Kategorie",
+      "location": "Standort",
+      "quantity": "Menge",
+      "minStock": "Mindestbestand",
+      "price": "Preis",
+      "namePlaceholder": "Artikelname eingeben",
+      "skuPlaceholder": "SKU eingeben",
+      "locationPlaceholder": "Standort eingeben",
+      "selectCategory": "Kategorie Auswählen",
+      "add": "Artikel Hinzufügen",
+      "cancel": "Abbrechen",
+      "close": "Schließen",
+      "success": "Artikel erfolgreich hinzugefügt!",
+      "missingFields": "Bitte geben Sie mindestens einen Namen und eine SKU für den neuen Artikel an.",
+      "duplicateSku": "SKU existiert bereits. Bitte verwenden Sie eine eindeutige SKU."
+    },
+    "removeItem": {
+      "confirm": "Diesen Artikel aus dem Demo-Inventar entfernen? Diese Aktion kann in der Demo nicht rückgängig gemacht werden.",
+      "success": "Artikel erfolgreich entfernt!"
+    },
+    "editItem": {
+      "placeholder": "Bearbeiten ist ein Demo-Platzhalter."
+    },
+    "logout": {
+      "confirm": "Sind Sie sicher, dass Sie sich abmelden möchten?",
+      "success": "Erfolgreich abgemeldet!"
+    },
+    "nav": {
+      "reports": "Berichts-Seite würde hier geöffnet",
+      "settings": "Einstellungs-Seite würde hier geöffnet"
+    }
+  },
+  "notifications": {
+    "success": "Erfolgreich",
+    "error": "Fehler",
+    "warning": "Warnung",
+    "info": "Information",
+    "close": "Schließen"
+  },
+  "common": {
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "add": "Hinzufügen",
+    "search": "Suchen",
+    "filter": "Filter",
+    "clear": "Leeren",
+    "loading": "Lädt...",
+    "yes": "Ja",
+    "no": "Nein",
+    "ok": "OK"
+  }
 }

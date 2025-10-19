@@ -1,0 +1,167 @@
+<div class="login-container">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4">
+
+        <!-- Logo/Company Section -->
+        <div class="text-center mb-5 company-header">
+          <h1 class="company-logo">Mini Inventur - Demo</h1>
+          <p class="company-subtitle">Muhammed Ali Türkmen</p>
+        </div>
+
+        <!-- Main Login Card -->
+        <div class="glass-card">
+
+          <!-- Card Header -->
+          <div class="card-header">
+            <h4 class="welcome-title">Sign In</h4>
+            <small class="welcome-subtitle">Enter your credentials to continue</small>
+          </div>
+
+          <!-- Login Form -->
+          <div class="card-body">
+
+            <!-- Demo Message -->
+            @if (loginMessage) {
+              <div class="alert mb-3" [class.alert-success]="loginSuccess" [class.alert-danger]="!loginSuccess">
+                {{ loginMessage }}
+              </div>
+              <app-toast>
+
+              </app-toast>
+            }
+
+            <!-- Demo Credentials Helper -->
+            <div class="demo-helper mb-3">
+              <small class="text-muted d-block mb-2">🎭 Demo Mode - Quick Login:</small>
+              <div class="d-flex gap-1 flex-wrap">
+                <button type="button" class="btn btn-outline-primary btn-sm"
+                        (click)="fillDemoCredentials('demo')"
+                        [disabled]="loading">
+                  Demo User
+                </button>
+                <button type="button" class="btn btn-outline-secondary btn-sm"
+                        (click)="fillDemoCredentials('admin')"
+                        [disabled]="loading">
+                  Admin
+                </button>
+                <button type="button" class="btn btn-outline-info btn-sm"
+                        (click)="fillDemoCredentials('manager')"
+                        [disabled]="loading">
+                  Manager
+                </button>
+              </div>
+            </div>
+
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+
+              <!-- Email Field -->
+              <div class="floating-label-group">
+                <input
+                  type="email"
+                  id="email"
+                  formControlName="email"
+                  class="form-control floating-input"
+                  [class.is-invalid]="submitted && f['email'].errors"
+                  placeholder="Email"
+                  autocomplete="email"
+                >
+                @if (submitted && f['email'].errors) {
+                  <div class="invalid-feedback">
+                    @if (f['email'].errors?.['required']) {
+                      <div>Email is required</div>
+                    }
+                    @if (f['email'].errors?.['email']) {
+                      <div>Please enter a valid email</div>
+                    }
+                  </div>
+                }
+              </div>
+
+              <!-- Password Field -->
+              <div class="floating-label-group">
+                <input
+                  [type]="showPassword ? 'text' : 'password'"
+                  id="password"
+                  formControlName="password"
+                  class="form-control floating-input"
+                  [class.is-invalid]="submitted && f['password'].errors"
+                  placeholder="Password"
+                  autocomplete="current-password"
+                >
+                <button
+                  type="button"
+                  class="password-toggle"
+                  (click)="togglePasswordVisibility()"
+                  tabindex="-1"
+                  aria-label="Toggle password visibility"
+                >
+                  <i [class]="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+                </button>
+                @if (submitted && f['password'].errors) {
+                  <div class="invalid-feedback">
+                    @if (f['password'].errors?.['required']) {
+                      <div>Password is required</div>
+                    }
+                    @if (f['password'].errors?.['minlength']) {
+                      <div>Password must be at least 6 characters</div>
+                    }
+                  </div>
+                }
+              </div>
+
+              <!-- Remember Me & Forgot Password -->
+              <div class="form-options">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="rememberMe"
+                    formControlName="rememberMe"
+                  >
+                  <label class="form-check-label" for="rememberMe">
+                    Remember me
+                  </label>
+                </div>
+              </div>
+
+              <!-- Login Button -->
+              <button
+                type="submit"
+                class="btn-login"
+                [disabled]="loading"
+              >
+                @if (loading) {
+                  <span class="loading-spinner me-2"></span>
+                }
+                {{ loading ? 'Signing In...' : 'Sign In' }}
+              </button>
+
+            </form>
+          </div>
+
+          <!-- Card Footer -->
+          <div class="card-footer">
+            <small>
+              Don't have an account?
+              <a routerLink="/register" class="create-account-link">
+                Create Account
+              </a>
+            </small>
+          </div>
+
+        </div>
+
+        <!-- Security Badge -->
+        <div class="security-badge">
+          <div class="security-content">
+            <i class="fas fa-shield-alt"></i>
+            <small>Demo Mode - No real authentication</small>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<app-toast-container></app-toast-container>

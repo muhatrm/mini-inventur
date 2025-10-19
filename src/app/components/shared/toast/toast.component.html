@@ -1,0 +1,25 @@
+<div class="toast align-items-center border-0 show"
+     [ngClass]="getToastClass()"
+     role="alert"
+     [attr.aria-live]="notification.type === 'error' ? 'assertive' : 'polite'"
+     [attr.aria-atomic]="true">
+  <div class="d-flex">
+    <div class="toast-body d-flex align-items-start">
+      <div class="toast-icon me-3">
+        <i [class]="getIconClass()" [attr.aria-hidden]="true"></i>
+      </div>
+      <div class="toast-content flex-grow-1">
+        <div class="toast-title fw-bold mb-1" *ngIf="notification.title">
+          {{ notification.title }}
+        </div>
+        <div class="toast-message">
+          {{ notification.message }}
+        </div>
+      </div>
+    </div>
+    <button type="button"
+            class="btn-close btn-close-white me-2 m-auto"
+            (click)="onClose()"
+            [attr.aria-label]="t('notifications.close') || 'Close'"></button>
+  </div>
+</div>

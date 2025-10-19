@@ -1,0 +1,268 @@
+<div class="register-container">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6">
+
+        <!-- Logo/Company Section -->
+        <div class="text-center mb-5 company-header">
+          <h1 class="company-logo">Mini Inventur - Demo</h1>
+          <p class="company-subtitle">Muhammed Ali Türkmen</p>
+        </div>
+
+        <!-- Main Registration Card -->
+        <div class="glass-card">
+
+          <!-- Card Header -->
+          <div class="card-header">
+            <h4 class="welcome-title">Create Account</h4>
+            <small class="welcome-subtitle">Join the inventory management system</small>
+          </div>
+
+          <!-- Registration Form -->
+          <div class="card-body">
+
+            <!-- Demo Message -->
+            @if (registrationMessage) {
+              <div class="alert mb-3" [class.alert-success]="registrationSuccess" [class.alert-danger]="!registrationSuccess">
+                {{ registrationMessage }}
+              </div>
+            }
+
+            <!-- Demo Data Helper -->
+            <div class="demo-helper mb-3">
+              <small class="text-muted d-block mb-2">🎭 Demo Mode:</small>
+              <button type="button" class="btn btn-outline-info btn-sm"
+                      (click)="fillDemoData()"
+                      [disabled]="loading">
+                Fill Demo Data
+              </button>
+            </div>
+
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
+
+              <!-- Name Fields Row -->
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="floating-label-group">
+                    <input
+                      type="text"
+                      id="firstName"
+                      formControlName="firstName"
+                      class="form-control floating-input"
+                      [class.is-invalid]="submitted && f['firstName'].errors"
+                      placeholder="First Name"
+                      autocomplete="given-name"
+                    >
+                    @if (submitted && f['firstName'].errors) {
+                      <div class="invalid-feedback">
+                        {{ getFieldErrorMessage('firstName') }}
+                      </div>
+                    }
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="floating-label-group">
+                    <input
+                      type="text"
+                      id="lastName"
+                      formControlName="lastName"
+                      class="form-control floating-input"
+                      [class.is-invalid]="submitted && f['lastName'].errors"
+                      placeholder="Last Name"
+                      autocomplete="family-name"
+                    >
+                    @if (submitted && f['lastName'].errors) {
+                      <div class="invalid-feedback">
+                        {{ getFieldErrorMessage('lastName') }}
+                      </div>
+                    }
+                  </div>
+                </div>
+              </div>
+
+              <!-- Email Field -->
+              <div class="floating-label-group">
+                <input
+                  type="email"
+                  id="email"
+                  formControlName="email"
+                  class="form-control floating-input"
+                  [class.is-invalid]="submitted && f['email'].errors"
+                  placeholder="Email"
+                  autocomplete="email"
+                >
+                @if (submitted && f['email'].errors) {
+                  <div class="invalid-feedback">
+                    {{ getFieldErrorMessage('email') }}
+                  </div>
+                }
+              </div>
+
+              <!-- Department & Role Row -->
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="floating-label-group">
+                    <select
+                      id="department"
+                      formControlName="department"
+                      class="form-control floating-input"
+                      [class.is-invalid]="submitted && f['department'].errors"
+                    >
+                      <option value="" disabled>Select Department</option>
+                      @for (dept of getDepartments(); track dept) {
+                        <option [value]="dept">{{ dept }}</option>
+                      }
+                    </select>
+                    @if (submitted && f['department'].errors) {
+                      <div class="invalid-feedback">
+                        {{ getFieldErrorMessage('department') }}
+                      </div>
+                    }
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="floating-label-group">
+                    <select
+                      id="role"
+                      formControlName="role"
+                      class="form-control floating-input"
+                      [class.is-invalid]="submitted && f['role'].errors"
+                    >
+                      <option value="" disabled>Select Role</option>
+                      @for (role of getRoles(); track role) {
+                        <option [value]="role">{{ role }}</option>
+                      }
+                    </select>
+                    @if (submitted && f['role'].errors) {
+                      <div class="invalid-feedback">
+                        {{ getFieldErrorMessage('role') }}
+                      </div>
+                    }
+                  </div>
+                </div>
+              </div>
+
+              <!-- Password Fields Row -->
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="floating-label-group">
+                    <input
+                      [type]="showPassword ? 'text' : 'password'"
+                      id="password"
+                      formControlName="password"
+                      class="form-control floating-input"
+                      [class.is-invalid]="submitted && f['password'].errors"
+                      placeholder="Password"
+                      autocomplete="new-password"
+                    >
+                    <button
+                      type="button"
+                      class="password-toggle"
+                      (click)="togglePasswordVisibility()"
+                      tabindex="-1"
+                      aria-label="Toggle password visibility"
+                    >
+                      <i [class]="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+                    </button>
+                    @if (submitted && f['password'].errors) {
+                      <div class="invalid-feedback">
+                        {{ getFieldErrorMessage('password') }}
+                      </div>
+                    }
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="floating-label-group">
+                    <input
+                      [type]="showConfirmPassword ? 'text' : 'password'"
+                      id="confirmPassword"
+                      formControlName="confirmPassword"
+                      class="form-control floating-input"
+                      [class.is-invalid]="submitted && (f['confirmPassword'].errors || registerForm.errors?.['passwordMismatch'])"
+                      placeholder="Confirm Password"
+                      autocomplete="new-password"
+                    >
+                    <button
+                      type="button"
+                      class="password-toggle"
+                      (click)="toggleConfirmPasswordVisibility()"
+                      tabindex="-1"
+                      aria-label="Toggle confirm password visibility"
+                    >
+                      <i [class]="showConfirmPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+                    </button>
+                    @if (submitted && (f['confirmPassword'].errors || registerForm.errors?.['passwordMismatch'])) {
+                      <div class="invalid-feedback">
+                        {{ getFieldErrorMessage('confirmPassword') }}
+                      </div>
+                    }
+                  </div>
+                </div>
+              </div>
+
+              <!-- Terms & Conditions -->
+              <div class="form-check-group">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="acceptTerms"
+                    formControlName="acceptTerms"
+                    [class.is-invalid]="submitted && f['acceptTerms'].errors"
+                  >
+                  <label class="form-check-label" for="acceptTerms">
+                    I agree to the
+                    <a href="/terms" class="terms-link">Terms of Use</a>
+                    and
+                    <a href="/terms" class="terms-link">Privacy Policy</a>
+                  </label>
+                </div>
+                @if (submitted && f['acceptTerms'].errors) {
+                  <div class="invalid-feedback text-center">
+                    {{ getFieldErrorMessage('acceptTerms') }}
+                  </div>
+                }
+              </div>
+
+              <!-- Register Button -->
+              <button
+                type="submit"
+                class="btn-register"
+                [disabled]="loading"
+              >
+                @if (loading) {
+                  <span class="loading-spinner me-2"></span>
+                }
+                {{ loading ? 'Creating Account...' : 'Create Account' }}
+              </button>
+
+            </form>
+          </div>
+
+          <!-- Card Footer -->
+          <div class="card-footer">
+            <small>
+              Already have an account?
+              <a href="/login" class="login-link">
+                Sign In
+              </a>
+            </small>
+          </div>
+
+        </div>
+
+        <!-- Security Badge -->
+        <div class="security-badge">
+          <div class="security-content">
+            <i class="fas fa-shield-alt"></i>
+            <small>Demo Mode - No real data stored</small>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

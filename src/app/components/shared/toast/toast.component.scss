@@ -1,0 +1,47 @@
+
+.toast {
+  max-width: 350px;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+}
+
+.toast-icon {
+  font-size: 1.25rem;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+.toast-title {
+  font-size: 0.9rem;
+  line-height: 1.2;
+}
+
+.toast-message {
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.toast.text-bg-success {
+  background-color: #198754 !important;
+  color: white !important;
+}
+
+.toast.text-bg-danger {
+  background-color: #dc3545 !important;
+  color: white !important;
+}
+
+.toast.text-bg-warning {
+  background-color: #fd7e14 !important;
+  color: white !important;
+}
+
+.toast.text-bg-info {
+  background-color: #02255b !important;
+  color: white !important;
+}
+
+.btn-close-white {
+  filter: invert(1) grayscale(100%) brightness(200%);
+}

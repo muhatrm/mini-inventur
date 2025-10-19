@@ -1,0 +1,509 @@
+<!-- Professional Header with Language Service Flags -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+  <div class="container-fluid">
+    <!-- Brand -->
+    <a class="navbar-brand fw-bold d-flex align-items-center" href="/dashboard">
+      <div class="brand-icon me-2">
+        <i class="fas fa-boxes"></i>
+      </div>
+      <div class="brand-text">
+        <div class="brand-title">{{ t('app.title') || 'Mini Inventar' }}</div>
+      </div>
+    </a>
+
+    <!-- Mobile toggle -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            [attr.aria-label]="t('navigation.menu') || 'Toggle navigation'">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar content -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="/dashboard" [attr.aria-current]="'page'">
+            <i class="fas fa-tachometer-alt me-1"></i>
+            {{ t('nav.dashboard') || 'Dashboard' }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" (click)="navigateToReports(); $event.preventDefault()">
+            <i class="fas fa-chart-bar me-1"></i>
+            {{ t('nav.reports') || 'Reports' }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/logout">
+            <i class="fas fa-cog me-1"></i>
+            {{ t('nav.logout') || 'Logout' }}
+          </a>
+        </li>
+      </ul>
+
+      <!-- Right side -->
+      <div class="d-flex align-items-center gap-3">
+        <!-- Language Switch with Flags -->
+        <div class="dropdown">
+          <button class="btn btn-outline-light btn-sm dropdown-toggle language-toggle"
+                  type="button"
+                  id="languageDropdown"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false">
+            <span class="flag-icon me-2">
+              {{ currentLanguage === 'en' ? '🇺🇸' : '🇩🇪' }}
+            </span>
+            <span class="language-code">{{ currentLanguage === 'en' ? 'EN' : 'DE' }}</span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end language-menu" aria-labelledby="languageDropdown">
+            <li>
+              <a class="dropdown-item language-item"
+                 href="#"
+                 (click)="switchLanguage('en'); $event.preventDefault()"
+                 [class.active]="currentLanguage === 'en'">
+                <span class="flag-icon me-2">🇺🇸</span>
+                <span class="language-name">{{ t('@@language.switch.english') || 'English' }}</span>
+                <i class="fas fa-check ms-auto text-success" *ngIf="currentLanguage === 'en'"></i>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item language-item"
+                 href="#"
+                 (click)="switchLanguage('de'); $event.preventDefault()"
+                 [class.active]="currentLanguage === 'de'">
+                <span class="flag-icon me-2">🇩🇪</span>
+                <span class="language-name">{{ t('@@language.switch.german') || 'Deutsch' }}</span>
+                <i class="fas fa-check ms-auto text-success" *ngIf="currentLanguage === 'de'"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- User Info -->
+        <div class="dropdown">
+          <button class="btn btn-outline-light dropdown-toggle user-toggle"
+                  type="button"
+                  id="userDropdown"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false">
+            <div class="user-avatar me-2">
+              <i class="fas fa-user"></i>
+            </div>
+            <span class="user-name">{{ currentUser?.firstName || currentUser?.role }}</span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end user-menu" aria-labelledby="userDropdown">
+            <li class="dropdown-header">
+              <div class="user-info">
+                <div class="user-email">{{ currentUser?.email }}</div>
+                <small class="user-role text-muted">{{ currentUser?.role }}</small>
+              </div>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <a class="dropdown-item" href="#" (click)="$event.preventDefault()">
+                <i class="fas fa-user-cog me-2 text-primary"></i>
+                {{ t('nav.profile') || 'Profile' }}
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#" (click)="navigateToSettings(); $event.preventDefault()">
+                <i class="fas fa-cog me-2 text-secondary"></i>
+                {{ t('nav.settings') || 'Settings' }}
+              </a>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <a class="dropdown-item text-danger" href="#" (click)="logout(); $event.preventDefault()">
+                <i class="fas fa-sign-out-alt me-2"></i>
+                {{ t('nav.logout') || 'Logout' }}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Dashboard Content -->
+<div class="dashboard-container">
+  <div class="container-fluid">
+    <!-- Rest of your existing dashboard content here -->
+    <!-- Demo Banner -->
+    <div class="alert alert-info mt-3 mb-4" role="alert">
+      <div class="d-flex align-items-center">
+        <i class="fas fa-info-circle me-2"></i>
+        <div>
+          <strong>{{ t('demo.mode') || 'Demo-Modus' }}</strong><br>
+          <small>{{ t('demo.description') || 'Dies ist ein simuliertes Inventarverwaltungssystem. Alle Daten sind nur zu Demonstrationszwecken generiert.' }}</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Welcome Message -->
+    <div class="row mb-4">
+      <div class="col">
+        <h1 class="display-6 fw-bold mb-1">
+          {{ t('dashboard.welcome') || 'Welcome back' }}, {{ currentUser?.firstName || currentUser?.role }}!
+        </h1>
+        <p class="text-muted mb-0">{{ t('dashboard.title') || 'Dashboard Overview' }}</p>
+      </div>
+    </div>
+
+    <!-- Stats Cards Row -->
+    <div class="row g-4 mb-4">
+      <div class="col-lg-3 col-md-6">
+        <div class="stats-card">
+          <div class="stats-icon">
+            <i class="fas fa-boxes"></i>
+          </div>
+          <div class="stats-content">
+            <h3>{{ totalItems }}</h3>
+            <p>{{ t('dashboard.stats.totalItems') || 'Total Items' }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6">
+        <div class="stats-card bg-info">
+          <div class="stats-icon">
+            <i class="fas fa-layer-group"></i>
+          </div>
+          <div class="stats-content">
+            <h3>{{ totalQuantity }}</h3>
+            <p>{{ t('dashboard.stats.totalQuantity') || 'Total Quantity' }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6">
+        <div class="stats-card bg-warning">
+          <div class="stats-icon">
+            <i class="fas fa-exclamation-triangle"></i>
+          </div>
+          <div class="stats-content">
+            <h3>{{ lowStockCount }}</h3>
+            <p>{{ t('dashboard.stats.lowStock') || 'Low Stock' }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6">
+        <div class="stats-card bg-danger">
+          <div class="stats-icon">
+            <i class="fas fa-times-circle"></i>
+          </div>
+          <div class="stats-content">
+            <h3>{{ outOfStockCount }}</h3>
+            <p>{{ t('dashboard.stats.outOfStock') || 'Out of Stock' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional Stats Row -->
+    <div class="row g-4 mb-4">
+      <div class="col-lg-4 col-md-6">
+        <div class="stats-card bg-success">
+          <div class="stats-icon">
+            <i class="fas fa-euro-sign"></i>
+          </div>
+          <div class="stats-content">
+            <h3>{{ totalValue | currency:'EUR':'symbol':'1.0-0' }}</h3>
+            <p>{{ t('dashboard.stats.totalValue') || 'Total Value' }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="stats-card bg-secondary">
+          <div class="stats-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div class="stats-content">
+            <h3>{{ uniqueLocations }}</h3>
+            <p>{{ t('dashboard.stats.locations') || 'Locations' }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="stats-card bg-dark">
+          <div class="stats-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div class="stats-content">
+            <h3>{{ recentActivity }}</h3>
+            <p>{{ t('dashboard.stats.recentActivity') || 'Recent Activity' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content Card -->
+    <div class="card">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0 fw-bold">{{ t('dashboard.inventory.title') || 'Inventory Management' }}</h5>
+        <div class="d-flex gap-2">
+          <button class="btn btn-success btn-sm" (click)="toggleAddModal()"
+                  [attr.aria-label]="t('dashboard.addItem.button') || 'Add new item'">
+            <i class="fas fa-plus me-1"></i>
+            {{ t('dashboard.addItem.button') || 'Add Item' }}
+          </button>
+          <button class="btn btn-outline-primary btn-sm" (click)="refreshData()" [disabled]="isLoading"
+                  [attr.aria-label]="t('dashboard.refresh') || 'Refresh data'">
+            <i class="fas fa-sync-alt me-1" [class.fa-spin]="isLoading"></i>
+            {{ isLoading ? (t('dashboard.refreshing') || 'Refreshing...') : (t('dashboard.refresh') || 'Refresh') }}
+          </button>
+          <button class="btn btn-outline-secondary btn-sm" (click)="exportData()"
+                  [attr.aria-label]="t('dashboard.export') || 'Export data'">
+            <i class="fas fa-download me-1"></i>
+            {{ t('dashboard.export') || 'Export' }}
+          </button>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <!-- Search and Filter Row -->
+        <div class="row g-3 mb-3">
+          <div class="col-md-4">
+            <div class="input-group">
+              <span class="input-group-text">
+                <i class="fas fa-search"></i>
+              </span>
+              <input type="text"
+                     class="form-control"
+                     [(ngModel)]="searchText"
+                     (input)="applyFilters()"
+                     [placeholder]="t('dashboard.search.placeholder') || 'Search by name, SKU, or location...'"
+                     [attr.aria-label]="t('dashboard.search.label') || 'Search inventory items'">
+            </div>
+          </div>
+
+          <div class="col-md-2">
+            <select class="form-select" [(ngModel)]="locationFilter" (change)="applyFilters()"
+                    [attr.aria-label]="t('dashboard.filter.location') || 'Filter by location'">
+              <option *ngFor="let loc of getLocations()" [value]="loc">
+                {{ loc === 'All' ? (t('dashboard.filter.allLocations') || 'All Locations') : loc }}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-md-2">
+            <select class="form-select" [(ngModel)]="categoryFilter" (change)="applyFilters()"
+                    [attr.aria-label]="t('dashboard.filter.category') || 'Filter by category'">
+              <option value="All">{{ t('dashboard.filter.allCategories') || 'All Categories' }}</option>
+              <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+            </select>
+          </div>
+
+          <div class="col-md-2">
+            <select class="form-select" [(ngModel)]="statusFilter" (change)="applyFilters()"
+                    [attr.aria-label]="t('dashboard.filter.status') || 'Filter by status'">
+              <option value="All">{{ t('dashboard.filter.allStatuses') || 'All Statuses' }}</option>
+              <option value="In Stock">{{ t('dashboard.status.instock') || 'In Stock' }}</option>
+              <option value="Low Stock">{{ t('dashboard.status.lowstock') || 'Low Stock' }}</option>
+              <option value="Out of Stock">{{ t('dashboard.status.outofstock') || 'Out of Stock' }}</option>
+            </select>
+          </div>
+
+          <div class="col-md-2">
+            <button class="btn btn-outline-secondary w-100" (click)="clearFilters()"
+                    [attr.aria-label]="t('dashboard.filter.clear') || 'Clear all filters'">
+              <i class="fas fa-times me-1"></i>
+              {{ t('dashboard.filter.clear') || 'Clear' }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Inventory Table -->
+        <div class="table-responsive">
+          <table class="table table-hover" role="table">
+            <thead>
+            <tr>
+              <th scope="col">{{ t('dashboard.table.id') || 'ID' }}</th>
+              <th scope="col">{{ t('dashboard.table.name') || 'Name' }}</th>
+              <th scope="col">{{ t('dashboard.table.sku') || 'SKU' }}</th>
+              <th scope="col">{{ t('dashboard.table.category') || 'Category' }}</th>
+              <th scope="col">{{ t('dashboard.table.quantity') || 'Quantity' }}</th>
+              <th scope="col">{{ t('dashboard.table.location') || 'Location' }}</th>
+              <th scope="col">{{ t('dashboard.table.price') || 'Price' }}</th>
+              <th scope="col">{{ t('dashboard.table.status') || 'Status' }}</th>
+              <th scope="col">{{ t('dashboard.table.lastUpdated') || 'Last Updated' }}</th>
+              <th scope="col">{{ t('dashboard.table.actions') || 'Actions' }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of filteredInventory; trackBy: trackById"
+                [class.table-warning]="item.status === 'Low Stock'"
+                [class.table-danger]="item.status === 'Out of Stock'">
+              <th scope="row">
+                <code>{{ item.id }}</code>
+              </th>
+              <td>
+                <div class="fw-medium">{{ item.name }}</div>
+              </td>
+              <td>
+                <code class="text-muted">{{ item.sku }}</code>
+              </td>
+              <td>
+                <span class="badge bg-light text-dark">{{ item.category }}</span>
+              </td>
+              <td>
+                <div class="d-flex align-items-center gap-1">
+                  <button class="btn btn-outline-danger btn-sm px-2 py-0"
+                          (click)="updateQuantity(item, -1)"
+                          [disabled]="item.qty <= 0"
+                          [attr.aria-label]="'Decrease quantity for ' + item.name">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <span class="mx-2 fw-bold" style="min-width: 40px; text-align: center; display: inline-block;">
+                      {{ item.qty }}
+                    </span>
+                  <button class="btn btn-outline-success btn-sm px-2 py-0"
+                          (click)="updateQuantity(item, 1)"
+                          [attr.aria-label]="'Increase quantity for ' + item.name">
+                    <i class="fas fa-plus"></i>
+                  </button>
+                </div>
+              </td>
+              <td>
+                <div class="text-truncate-custom">{{ item.location }}</div>
+              </td>
+              <td>
+                <strong>{{ item.price | currency:'EUR':'symbol':'1.2-2' }}</strong>
+              </td>
+              <td>
+                  <span class="badge rounded-pill px-3 py-2"
+                        [ngClass]="getStatusBadgeClass(item.status)"
+                        [attr.aria-label]="getStatusDisplayText(item.status)">
+                    <i [class]="getStatusIcon(item.status) + ' me-1'"></i>
+                    {{ getStatusDisplayText(item.status) }}
+                  </span>
+              </td>
+              <td>
+                <small class="text-muted">{{ item.lastUpdated | date:'short' }}</small>
+              </td>
+              <td>
+                <div class="btn-group btn-group-sm" role="group" [attr.aria-label]="'Actions for ' + item.name">
+                  <button class="btn btn-outline-primary" (click)="editItem(item)"
+                          [attr.aria-label]="'Edit ' + item.name">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="btn btn-outline-danger" (click)="removeItem(item.id)"
+                          [attr.aria-label]="'Remove ' + item.name">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+
+            <!-- Empty State -->
+            <tr *ngIf="filteredInventory.length === 0">
+              <td colspan="10" class="text-center py-4 text-muted">
+                <i class="fas fa-search fa-2x mb-3 d-block"></i>
+                {{ t('dashboard.noItems') || 'No items found matching your criteria.' }}
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Item Modal -->
+    <div class="modal fade" [class.show]="showAddModal" [style.display]="showAddModal ? 'block' : 'none'"
+         tabindex="-1" role="dialog" [attr.aria-labelledby]="'addItemModalLabel'" [attr.aria-hidden]="!showAddModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addItemModalLabel">
+              {{ t('dashboard.addItem.title') || 'Add New Item' }}
+            </h5>
+            <button type="button" class="btn-close" (click)="toggleAddModal()"
+                    [attr.aria-label]="t('dashboard.addItem.close') || 'Close'"></button>
+          </div>
+          <div class="modal-body">
+            <form (ngSubmit)="addItem()">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label class="form-label" for="itemName">
+                    {{ t('dashboard.addItem.name') || 'Name' }} <span class="text-danger">*</span>
+                  </label>
+                  <input type="text" class="form-control" id="itemName"
+                         [(ngModel)]="newItem.name" name="itemName" required
+                         [placeholder]="t('dashboard.addItem.namePlaceholder') || 'Enter item name'">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label class="form-label" for="itemSku">
+                    {{ t('dashboard.addItem.sku') || 'SKU' }} <span class="text-danger">*</span>
+                  </label>
+                  <input type="text" class="form-control" id="itemSku"
+                         [(ngModel)]="newItem.sku" name="itemSku" required
+                         [placeholder]="t('dashboard.addItem.skuPlaceholder') || 'Enter SKU'">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label class="form-label" for="itemCategory">
+                    {{ t('dashboard.addItem.category') || 'Category' }}
+                  </label>
+                  <select class="form-select" id="itemCategory" [(ngModel)]="newItem.category" name="itemCategory">
+                    <option value="">{{ t('dashboard.addItem.selectCategory') || 'Select category' }}</option>
+                    <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label class="form-label" for="itemLocation">
+                    {{ t('dashboard.addItem.location') || 'Location' }}
+                  </label>
+                  <input type="text" class="form-control" id="itemLocation"
+                         [(ngModel)]="newItem.location" name="itemLocation"
+                         [placeholder]="t('dashboard.addItem.locationPlaceholder') || 'Enter location'">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4 mb-3">
+                  <label class="form-label" for="itemQty">
+                    {{ t('dashboard.addItem.quantity') || 'Quantity' }}
+                  </label>
+                  <input type="number" class="form-control" id="itemQty" min="0"
+                         [(ngModel)]="newItem.qty" name="itemQty">
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label class="form-label" for="itemMinStock">
+                    {{ t('dashboard.addItem.minStock') || 'Min Stock' }}
+                  </label>
+                  <input type="number" class="form-control" id="itemMinStock" min="0"
+                         [(ngModel)]="newItem.minStock" name="itemMinStock">
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label class="form-label" for="itemPrice">
+                    {{ t('dashboard.addItem.price') || 'Price' }} (€)
+                  </label>
+                  <input type="number" class="form-control" id="itemPrice" min="0" step="0.01"
+                         [(ngModel)]="newItem.price" name="itemPrice">
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="toggleAddModal()">
+              {{ t('dashboard.addItem.cancel') || 'Cancel' }}
+            </button>
+            <button type="button" class="btn btn-success" (click)="addItem()">
+              <i class="fas fa-plus me-1"></i>
+              {{ t('dashboard.addItem.add') || 'Add Item' }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Backdrop -->
+    <div class="modal-backdrop fade" [class.show]="showAddModal" *ngIf="showAddModal"
+         (click)="toggleAddModal()"></div>
+  </div>
+</div>
+<app-toast-container></app-toast-container>

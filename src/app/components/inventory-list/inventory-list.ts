@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LanguageService } from '../../services/language';
+import { LanguageService } from '../../services/language/language.service';
 
 @Component({
   selector: 'app-inventory-list',

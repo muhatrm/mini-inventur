@@ -1,13 +1,12 @@
 import { Component, HostListener, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LanguageService } from '../../services/language';
-
+import { LanguageService } from '../../services/language/language.service';
 @Component({
   selector: 'app-language-switch',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './language-switcher.html',
-  styleUrl: './language-switcher.css'
+  styleUrl: './language-switcher.scss'
 })
 export class LanguageSwitcher {
   // Öffentlich, damit Template Zugriff hat

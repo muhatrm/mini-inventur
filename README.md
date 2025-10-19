@@ -1,59 +1,57 @@
 # MiniInventar
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.2.
+A modern, component-based inventory management dashboard built with Angular and Nx, demonstrating scalable architecture and production-ready workflows.
 
-## Development server
+## Overview
 
-To start a local development server, run:
+MiniInventar is a professional Angular application showcasing modular design patterns, modern UI frameworks, and enterprise-grade tooling. The project demonstrates proficiency in component-driven development, state management, and optimized build configurations.
 
-```bash
-ng serve
-```
+## Tech Stack
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- **Framework:** Angular 20.3.x
+- **Build System:** Nx 21.5.x (monorepo tooling)
+- **Language:** TypeScript 5.9.x
+- **Styling:** SCSS, Tailwind CSS, Bootstrap
+- **UI Components:** PrimeNG
+- **Architecture:** Modular, scalable, component-based
 
-## Code scaffolding
+## Key Features
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- Component-based architecture for maintainability and reusability
+- Multi-framework styling approach (Tailwind + Bootstrap + SCSS)
+- Production-optimized builds with environment-specific configurations
+- Live reload development environment
+- Modular design enabling easy feature expansion
+- Professional UI with PrimeNG components
 
-```bash
-ng generate component component-name
-```
+## Getting Started
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Development Server
 
-```bash
-ng generate --help
-```
+Run the development server with live reload:
 
-## Building
+nx serve mini-inventar
 
-To build the project run:
 
-```bash
-ng build
-```
+## Project Structure
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+The application follows Nx best practices for monorepo management, with clear separation of concerns and scalable folder organization optimized for team collaboration and long-term maintenance.
 
-## Running unit tests
+## Skills Demonstrated
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+- Modern Angular development with latest features
+- Monorepo management using Nx
+- Multi-configuration build pipelines
+- Professional UI/UX implementation
+- TypeScript type safety and best practices
+- CSS framework integration and customization
 
-```bash
-ng test
-```
+## Contact
 
-## Running end-to-end tests
+**Muhammed Ali Türkmen**  
+Email: [muhammed.ali.tuerkmen@gmail.com](mailto:muhammed.ali.tuerkmen@gmail.com)  
+Portfolio: [tuerkmen.dev](https://tuerkmen.dev)
 
-For end-to-end (e2e) testing, run:
+---
 
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+*Built with Angular, Nx*

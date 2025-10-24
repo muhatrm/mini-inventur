@@ -19,7 +19,9 @@
         "inlineStyleLanguage": "scss",
         "assets": [{"glob": "**/*", "input": "public"}],
         "styles": ["src/styles.scss"],
-        "outputPath": "dist/mini-inventar"
+        "outputPath": "dist/mini-inventar",
+        "stylePreprocessorOptions": {
+          "silenceDeprecations": ["import"]
       },
       "configurations": {
         "production": {

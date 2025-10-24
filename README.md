@@ -11,9 +11,9 @@ MiniInventar is a professional Angular application showcasing modular design pat
 - **Framework:** Angular 20.3.x
 - **Build System:** Nx 21.5.x (monorepo tooling)
 - **Language:** TypeScript 5.9.x
-- **Styling:** SCSS, Tailwind CSS, Bootstrap
-- **UI Components:** PrimeNG
-- **Architecture:** Modular, scalable, component-based
+- **Styling:** SCSS, Bootstrap 5.3.8
+- **UI Components:** Font Awesome 6.7.2
+- **Architecture:** Modular, scalable, component-based (standalone components)
 
 ## Key Features
 

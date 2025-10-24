@@ -21,7 +21,10 @@
         "styles": ["src/styles.scss"],
         "outputPath": "dist/mini-inventar",
         "stylePreprocessorOptions": {
-          "silenceDeprecations": ["import"]
+          "silenceDeprecations": [
+            "import"
+          ]
+        }
       },
       "configurations": {
         "production": {

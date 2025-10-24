@@ -1,5 +1,4 @@
 /* Professional Header Styles */
-
 .navbar {
   background: linear-gradient(135deg, #0d6efd 0%, #0056b3 100%) !important;
   backdrop-filter: blur(10px);
@@ -27,6 +26,7 @@
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
+  flex-shrink: 0;
 }
 
 .brand-text {
@@ -55,6 +55,7 @@
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
+  white-space: nowrap;
 }
 
 .navbar-nav .nav-link:hover {
@@ -71,9 +72,14 @@
 
 .navbar-nav .nav-link i {
   font-size: 0.9rem;
+  flex-shrink: 0;
 }
 
-/* LanguageService Toggle */
+.nav-text {
+  display: inline;
+}
+
+/* Language Toggle */
 .language-toggle {
   border: 1px solid rgba(255, 255, 255, 0.3);
   padding: 0.5rem 0.75rem;
@@ -95,6 +101,7 @@
 .flag-icon {
   font-size: 1rem;
   line-height: 1;
+  flex-shrink: 0;
 }
 
 .language-code {
@@ -129,6 +136,7 @@
   align-items: center;
   justify-content: center;
   font-size: 0.75rem;
+  flex-shrink: 0;
 }
 
 .user-name {
@@ -203,6 +211,7 @@
   font-weight: 500;
   color: #495057;
   font-size: 0.875rem;
+  word-break: break-word;
 }
 
 .user-role {
@@ -212,6 +221,10 @@
 
 /* Mobile Responsiveness */
 @media (max-width: 991.98px) {
+  .navbar {
+    padding: 0.5rem 0;
+  }
+
   .brand-subtitle {
     display: none;
   }
@@ -226,23 +239,41 @@
     font-size: 1rem;
   }
 
-  .user-name {
-    display: none;
-  }
-
-  .language-code {
-    display: none;
+  .navbar-actions {
+    width: 100%;
+    justify-content: flex-start !important;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .navbar-nav {
     margin-top: 0.5rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: 0.5rem;
+    width: 100%;
   }
 
   .navbar-nav .nav-link {
     padding: 0.75rem 1rem;
     margin: 2px 0;
+    justify-content: flex-start;
+  }
+
+  .language-toggle,
+  .user-toggle {
+    flex: 1;
+    justify-content: center;
+    min-width: auto;
+  }
+
+  .user-name {
+    display: block;
+    max-width: none;
+  }
+
+  .language-code {
+    display: inline;
   }
 }
 
@@ -252,22 +283,50 @@
     padding-right: 0.75rem;
   }
 
-  .brand-text {
-    display: none;
+  .navbar-brand {
+    padding: 0.25rem 0;
+  }
+
+  .brand-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 0.875rem;
+  }
+
+  .brand-title {
+    font-size: 1rem;
   }
 
   .dropdown-menu {
     margin-top: 0.25rem;
+    max-width: calc(100vw - 2rem);
+  }
+
+  .navbar-toggler {
+    padding: 0.375rem 0.5rem;
+    font-size: 1rem;
+  }
+
+  .navbar-actions {
+    gap: 0.5rem !important;
+  }
+
+  .language-toggle,
+  .user-toggle {
+    font-size: 0.8125rem;
+    padding: 0.4rem 0.6rem;
   }
 }
 
 /* Accessibility */
 .dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
+  outline: none;
 }
 
 .nav-link:focus {
   box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
+  outline: none;
 }
 
 /* Animation for mobile menu */
@@ -275,10 +334,15 @@
   transition: all 0.3s ease;
 }
 
+.navbar-collapse.collapsing {
+  transition: height 0.3s ease;
+}
+
 /* Loading state for language switch */
 .language-toggle.loading {
   opacity: 0.7;
   pointer-events: none;
+  position: relative;
 }
 
 .language-toggle.loading::after {
@@ -295,4 +359,54 @@
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+/* Improved touch targets for mobile */
+@media (hover: none) and (pointer: coarse) {
+  .navbar-nav .nav-link,
+  .dropdown-item {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .language-toggle,
+  .user-toggle {
+    min-height: 44px;
+  }
+}
+/* Dropdown show state */
+.dropdown-menu.show {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-menu {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+}
+
+/* Mobile menu animation */
+.navbar-collapse {
+  transition: max-height 0.3s ease;
+  overflow: hidden;
+}
+
+.navbar-collapse:not(.show) {
+  max-height: 0;
+}
+
+.navbar-collapse.show {
+  max-height: 1000px;
+}
+
+@media (min-width: 992px) {
+  .navbar-collapse {
+    max-height: none !important;
+  }
 }

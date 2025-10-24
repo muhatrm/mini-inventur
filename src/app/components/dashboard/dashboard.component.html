@@ -238,29 +238,48 @@
         </div>
       </div>
     </div>
-
     <!-- Main Content Card -->
     <div class="card">
-      <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="mb-0 fw-bold">{{ t('dashboard.inventory.title') || 'Inventory Management' }}</h5>
-        <div class="d-flex gap-2">
-          <button class="btn btn-success btn-sm" (click)="toggleAddModal()"
-                  [attr.aria-label]="t('dashboard.addItem.button') || 'Add new item'">
-            <i class="fas fa-plus me-1"></i>
-            {{ t('dashboard.addItem.button') || 'Add Item' }}
-          </button>
-          <button class="btn btn-outline-primary btn-sm" (click)="refreshData()" [disabled]="isLoading"
-                  [attr.aria-label]="t('dashboard.refresh') || 'Refresh data'">
-            <i class="fas fa-sync-alt me-1" [class.fa-spin]="isLoading"></i>
-            {{ isLoading ? (t('dashboard.refreshing') || 'Refreshing...') : (t('dashboard.refresh') || 'Refresh') }}
-          </button>
-          <button class="btn btn-outline-secondary btn-sm" (click)="exportData()"
-                  [attr.aria-label]="t('dashboard.export') || 'Export data'">
-            <i class="fas fa-download me-1"></i>
-            {{ t('dashboard.export') || 'Export' }}
-          </button>
+      <div class="card-header">
+        <div class="header-content">
+          <!-- Title -->
+          <h5 class="header-title mb-0 fw-bold">
+            {{ t('dashboard.inventory.title') || 'Inventory Management' }}
+          </h5>
+
+          <!-- Action Buttons -->
+          <div class="header-actions">
+            <!-- Add Button - Primary Action -->
+            <button class="btn btn-success btn-sm btn-action"
+                    (click)="toggleAddModal()"
+                    [attr.aria-label]="t('dashboard.addItem.button') || 'Add new item'">
+              <i class="fas fa-plus me-1"></i>
+              <span class="btn-text">{{ t('dashboard.addItem.button') || 'Add Item' }}</span>
+            </button>
+
+            <!-- Secondary Actions Group -->
+            <div class="secondary-actions">
+              <button class="btn btn-outline-primary btn-sm btn-action"
+                      (click)="refreshData()"
+                      [disabled]="isLoading"
+                      [attr.aria-label]="t('dashboard.refresh.title') || 'Refresh data'">
+                <i class="fas fa-sync-alt" [class.fa-spin]="isLoading"></i>
+                <span class="btn-text">
+              {{ isLoading ? (t('dashboard.refreshing') || 'Refreshing...') : (t('dashboard.refresh.title') || 'Refresh') }}
+            </span>
+              </button>
+
+              <button class="btn btn-outline-secondary btn-sm btn-action"
+                      (click)="exportData()"
+                      [attr.aria-label]="t('dashboard.export.title') || 'Export data'">
+                <i class="fas fa-download"></i>
+                <span class="btn-text">{{ t('dashboard.export.title') || 'Export' }}</span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
+
 
       <div class="card-body">
         <!-- Search and Filter Row -->

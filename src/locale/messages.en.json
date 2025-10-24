@@ -14,7 +14,8 @@
     "inventory": "Inventory",
     "reports": "Reports",
     "profile": "Profile",
-    "logout": "Logout"
+    "logout": "Logout",
+    "settings": "Settings"
   },
   "demo": {
     "mode": "Demo Mode",
@@ -26,14 +27,13 @@
   "language": {
     "switch": {
       "german": "German",
-      "english": "English"
+      "english": "English",
+      "success": "Your language changed successfully"
     }
   },
   "dashboard": {
     "title": "Dashboard",
     "welcome": "Welcome back",
-    "export": "Export",
-    "refresh": "Refresh",
     "refreshing": "Refreshing...",
     "noItems": "No items found matching your criteria.",
     "stats": {
@@ -73,6 +73,14 @@
       "status": "Status",
       "lastUpdated": "Last Updated",
       "actions": "Actions"
+    },
+    "export": {
+      "title": "Export",
+      "success": "Successfully exported"
+    },
+    "refresh": {
+      "title": "Refresh",
+      "success": "Successfully refreshed"
     },
     "status": {
       "instock": "In Stock",

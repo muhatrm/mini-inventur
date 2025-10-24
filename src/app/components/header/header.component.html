@@ -13,92 +13,97 @@
     </a>
 
     <!-- Mobile toggle -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+    <button class="navbar-toggler"
+            type="button"
+            (click)="toggleMobileMenu()"
+            [attr.aria-expanded]="isMobileMenuOpen"
             [attr.aria-label]="t('navigation.menu') || 'Toggle navigation'">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <!-- Navbar content -->
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="collapse navbar-collapse"
+         [class.show]="isMobileMenuOpen"
+         id="navbarNav">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
           <a class="nav-link active" href="#" [attr.aria-current]="'page'">
             <i class="fas fa-tachometer-alt me-1"></i>
-            {{ t('nav.dashboard') || 'Dashboard' }}
+            <span class="nav-text">{{ t('nav.dashboard') || 'Dashboard' }}</span>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#" (click)="navigateToReports(); $event.preventDefault()">
             <i class="fas fa-chart-bar me-1"></i>
-            {{ t('nav.reports') || 'Reports' }}
+            <span class="nav-text">{{ t('nav.reports') || 'Reports' }}</span>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#" (click)="navigateToSettings(); $event.preventDefault()">
             <i class="fas fa-cog me-1"></i>
-            {{ t('nav.settings') || 'Settings' }}
+            <span class="nav-text">{{ t('nav.settings') || 'Settings' }}</span>
           </a>
         </li>
       </ul>
 
       <!-- Right side -->
-      <div class="d-flex align-items-center gap-3">
+      <div class="d-flex align-items-center gap-3 navbar-actions">
         <!-- Language Switch with Flags -->
-        <div class="dropdown">
+        <div class="dropdown language-dropdown-wrapper">
           <button class="btn btn-outline-light btn-sm dropdown-toggle language-toggle"
                   type="button"
                   id="languageDropdown"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false">
+                  (click)="toggleLanguageDropdown($event)"
+                  [attr.aria-expanded]="isLanguageDropdownOpen">
             <span class="flag-icon me-2">
               {{ currentLanguage === 'en' ? '🇺🇸' : '🇩🇪' }}
             </span>
             <span class="language-code">{{ currentLanguage === 'en' ? 'EN' : 'DE' }}</span>
           </button>
-          <ul class="dropdown-menu dropdown-menu-end language-menu" aria-labelledby="languageDropdown">
-            <li>
-              <a class="dropdown-item language-item"
-                 href="#"
-                 (click)="switchLanguage('en'); $event.preventDefault()"
-                 [class.active]="currentLanguage === 'en'">
-                <span class="flag-icon me-2">🇺🇸</span>
-                <span class="language-name">{{ t('language.switch.english') || 'English' }}</span>
-                <i class="fas fa-check ms-auto text-success" *ngIf="currentLanguage === 'en'"></i>
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item language-item"
-                 href="#"
-                 (click)="switchLanguage('de'); $event.preventDefault()"
-                 [class.active]="currentLanguage === 'de'">
-                <span class="flag-icon me-2">🇩🇪</span>
-                <span class="language-name">{{ t('language.switch.german') || 'Deutsch' }}</span>
-                <i class="fas fa-check ms-auto text-success" *ngIf="currentLanguage === 'de'"></i>
-              </a>
-            </li>
+          <ul class="dropdown-menu dropdown-menu-end language-menu"
+              [class.show]="isLanguageDropdownOpen"
+              aria-labelledby="languageDropdown">
+            @for (lang of languages; track lang.code) {
+              <li>
+                <a class="dropdown-item language-item"
+                   href="#"
+                   (click)="switchLanguage(lang.code, $event); $event.preventDefault()"
+                   [class.active]="currentLanguage === lang.code">
+                  <span class="flag-icon me-2">{{ lang.flag }}</span>
+                  <span class="language-name">{{ t('language.switch.' + lang.code) || lang.name }}</span>
+                  @if (currentLanguage === lang.code) {
+                    <i class="fas fa-check ms-auto text-success"></i>
+                  }
+                </a>
+              </li>
+            }
           </ul>
         </div>
 
         <!-- User Info -->
-        <div class="dropdown">
+        <div class="dropdown user-dropdown-wrapper">
           <button class="btn btn-outline-light dropdown-toggle user-toggle"
                   type="button"
                   id="userDropdown"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false">
+                  (click)="toggleUserDropdown($event)"
+                  [attr.aria-expanded]="isUserDropdownOpen">
             <div class="user-avatar me-2">
               <i class="fas fa-user"></i>
             </div>
             <span class="user-name">{{ currentUser?.firstName || currentUser?.role }}</span>
           </button>
-          <ul class="dropdown-menu dropdown-menu-end user-menu" aria-labelledby="userDropdown">
-            <li class="dropdown-header">
-              <div class="user-info">
-                <div class="user-email">{{ currentUser?.email }}</div>
-                <small class="user-role text-muted">{{ currentUser?.role }}</small>
-              </div>
-            </li>
-            <li><hr class="dropdown-divider"></li>
+          <ul class="dropdown-menu dropdown-menu-end user-menu"
+              [class.show]="isUserDropdownOpen"
+              aria-labelledby="userDropdown">
+            @if (currentUser) {
+              <li class="dropdown-header">
+                <div class="user-info">
+                  <div class="user-email">{{ currentUser.email }}</div>
+                  <small class="user-role text-muted">{{ currentUser.role }}</small>
+                </div>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+            }
             <li>
               <a class="dropdown-item" href="#" (click)="$event.preventDefault()">
                 <i class="fas fa-user-cog me-2 text-primary"></i>

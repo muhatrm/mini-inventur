@@ -14,7 +14,8 @@
     "inventory": "Inventar",
     "reports": "Berichte",
     "profile": "Profil",
-    "logout": "Abmelden"
+    "logout": "Abmelden",
+    "settings": "Einstellungen"
   },
   "demo": {
     "mode": "Demo-Modus",
@@ -26,14 +27,13 @@
   "language": {
     "switch": {
       "german": "Deutsch",
-      "english": "Englisch"
+      "english": "Englisch",
+      "success": "Deine Sprache wurde erfolgreich geändert"
     }
   },
   "dashboard": {
     "title": "Dashboard",
     "welcome": "Willkommen zurück",
-    "export": "Exportieren",
-    "refresh": "Aktualisieren",
     "refreshing": "Wird aktualisiert...",
     "noItems": "Keine Artikel gefunden, die Ihren Kriterien entsprechen.",
     "stats": {
@@ -73,6 +73,14 @@
       "status": "Status",
       "lastUpdated": "Zuletzt Aktualisiert",
       "actions": "Aktionen"
+    },
+    "export": {
+      "title": "Exportieren",
+      "success": "Erfolgreich exportiert"
+    },
+    "refresh": {
+      "title": "Aktualisieren",
+      "success": "Erfolgreich aktualisiert"
     },
     "status": {
       "instock": "Vorrätig",

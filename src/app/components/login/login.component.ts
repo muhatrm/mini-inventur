@@ -9,7 +9,7 @@ import {ToastContainerComponent} from '../shared/toast-container/toast-container
   selector: 'app-login',
   standalone: true,
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.scss'],
   imports: [ReactiveFormsModule, CommonModule, RouterLink, ToastComponent, ToastContainerComponent]
 })
 export class LoginComponent implements OnInit {
@@ -92,7 +92,7 @@ export class LoginComponent implements OnInit {
         // Simulate redirect after success message
         setTimeout(() => {
           this.router.navigate(['/dashboard']);
-        }, 1500);
+        }, 15500);
 
       } else {
         // Failed login
